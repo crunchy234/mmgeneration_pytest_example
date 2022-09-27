@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}      
+          python-version: ${{ matrix.python-version }}
       - name: Install pytorch
         run: |
           pip install torch torchvision
@@ -34,6 +34,10 @@ jobs:
           pip install -v -e .
           cd ..
           rm -rf mmgeneration
+      - name: Install dependencies
+        run: |
+          pip install -U pip
+          pip install -e .
       - name: Install dependencies
         run: |
           pip install -U pip
