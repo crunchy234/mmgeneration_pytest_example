@@ -20,6 +20,24 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install pytorch
+        run: |
+          pip install torch torchvision
+      - name: Install MMCV
+        run: |
+          pip install -U openmim
+          mim install mmcv-full
+      - name: Install MMGeneration
+        run: |
+          git clone https://github.com/open-mmlab/mmgeneration.git
+          cd mmgeneration
+          pip install -v -e .
+          cd ..
+          rm -rf mmgeneration
+      - name: Install dependencies
+        run: |
+          pip install -U pip
+          pip install -e .
       - name: Install dependencies
         run: |
           pip install -U pip
